@@ -6,7 +6,7 @@ import joblib
 st.set_page_config(page_title="Sales Prediction App", page_icon="📈", layout="centered")
 
 # Load the saved model and scaler
-model = joblib.load("sales_model.pk1")
+model = joblib.load("Sales_model.pk1")
 scaler = joblib.load("scaler.pk1")
 
 # 🌟 App title and intro
