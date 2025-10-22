@@ -257,9 +257,9 @@ with st.sidebar:
     st.markdown("### Developer")
     st.markdown("""
     **Yessine Zouari**  
-    Machine Learning Engineer
+    Machine Learning Developper
     
-    yessinezouari@example.com
+    yessinezouari9@gmail.com
     """)
 
 # ------------------------- #
