@@ -463,6 +463,6 @@ if predict_button:
 # ------------------------- #
 st.markdown("""
 <div class='footer'>
-    Built with Streamlit and XGBoost | © 2024 Yessine Zouari
+    Built with Streamlit and XGBoost | © 2025 Yessine Zouari
 </div>
 """, unsafe_allow_html=True)
