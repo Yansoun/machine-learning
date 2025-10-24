@@ -370,7 +370,6 @@ if uploaded_file is not None:
             title="Confidence (%)",
             titlefont=dict(color='#ffffff'),
             tickfont=dict(color='#a0a0a0'),
-            range=[0, 100],
             gridcolor='#333'
         ),
         height=450,
@@ -378,6 +377,7 @@ if uploaded_file is not None:
         hovermode='x unified',
         margin=dict(t=20, b=60, l=60, r=20)
     )
+    fig.update_yaxes(range=[0, 100])
     
     st.plotly_chart(fig, use_container_width=True)
 
