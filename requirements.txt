@@ -1,6 +1,4 @@
-streamlit==1.39.0
-tensorflow==2.20.0
-numpy<3.0.0,>=2.0.0
-pandas>=2.2.0
-pillow<11,>=7.1.0
-plotly>=5.0.0
+streamlit
+tensorflow
+pillow
+plotly
