@@ -240,8 +240,7 @@ st.markdown("<p class='hero-subtitle'>Powered by Deep Learning • Real-time Ana
 # ---------------------------------------------
 uploaded_file = st.file_uploader(
     "Upload a fruit image (Apple, Banana, Orange, or any fruit)",
-    type=["jpg", "jpeg", "png"],
-    label_visibility="visible"
+    type=["jpg", "jpeg", "png"]
 )
 
 if uploaded_file is not None:
@@ -280,7 +279,7 @@ if uploaded_file is not None:
     
     with col1:
         st.markdown("### 📸 Uploaded Image")
-        st.image(image_obj, use_column_width=True)
+        st.image(image_obj, use_container_width=True)
     
     with col2:
         st.markdown("<div class='result-card'>", unsafe_allow_html=True)
