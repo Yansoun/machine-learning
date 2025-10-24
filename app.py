@@ -360,24 +360,24 @@ if uploaded_file is not None:
     fig.update_layout(
         plot_bgcolor='#0f0f0f',
         paper_bgcolor='#0f0f0f',
-        xaxis=dict(
-            title="Classification",
-            titlefont=dict(color='#ffffff'),
-            tickfont=dict(color='#a0a0a0'),
-            gridcolor='#333'
-        ),
-        yaxis=dict(
-            title="Confidence (%)",
-            titlefont=dict(color='#ffffff'),
-            tickfont=dict(color='#a0a0a0'),
-            gridcolor='#333'
-        ),
         height=450,
         showlegend=False,
         hovermode='x unified',
         margin=dict(t=20, b=60, l=60, r=20)
     )
-    fig.update_yaxes(range=[0, 100])
+    fig.update_xaxes(
+        title_text="Classification",
+        title_font=dict(color='#ffffff'),
+        tickfont=dict(color='#a0a0a0'),
+        gridcolor='#333'
+    )
+    fig.update_yaxes(
+        title_text="Confidence (%)",
+        title_font=dict(color='#ffffff'),
+        tickfont=dict(color='#a0a0a0'),
+        range=[0, 100],
+        gridcolor='#333'
+    )
     
     st.plotly_chart(fig, use_container_width=True)
 
