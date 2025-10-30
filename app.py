@@ -183,13 +183,28 @@ st.markdown("""
 # ---------------------------------------------
 # 🧠 Load Model and Class Indices
 # ---------------------------------------------
+import gdown
+import os
+
+MODEL_PATH = "food_classifier_model.h5"
+MODEL_URL = "https://drive.google.com/uc?id=YOUR_FILE_ID_HERE"  # Replace with your Google Drive file ID
+
 @st.cache_resource
 def load_model():
     try:
-        model = tf.keras.models.load_model("food_classifier_model.h5")
+        # Download model from Google Drive if not exists
+        if not os.path.exists(MODEL_PATH):
+            with st.spinner("📦 Downloading model from cloud... This may take a moment."):
+                st.info("🌐 Model not found locally. Downloading from Google Drive...")
+                gdown.download(MODEL_URL, MODEL_PATH, quiet=False)
+                st.success("✅ Model downloaded successfully!")
+        
+        # Load the model
+        model = tf.keras.models.load_model(MODEL_PATH)
         return model
     except Exception as e:
         st.error(f"⚠️ Error loading model: {e}")
+        st.warning("💡 Make sure to replace 'YOUR_FILE_ID_HERE' with your actual Google Drive file ID")
         return None
 
 @st.cache_data
