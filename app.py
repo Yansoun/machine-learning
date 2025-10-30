@@ -187,7 +187,7 @@ import gdown
 import os
 
 MODEL_PATH = "food_classifier_model.h5"
-MODEL_URL = "https://drive.google.com/uc?id=YOUR_FILE_ID_HERE"  # Replace with your Google Drive file ID
+MODEL_URL = "https://drive.google.com/file/d/1-xW38Bf56Irz9zzdqA78-pcuhBc_skn0/view?usp=sharing"  # Replace with your Google Drive file ID
 
 @st.cache_resource
 def load_model():
