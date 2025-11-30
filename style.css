@@ -854,6 +854,318 @@ footer {
     overflow-x: auto;
     margin: 15px 0;
 }
+.quiz-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 12px 24px;
+    background: var(--gradient-2);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.6), 0 0 40px rgba(0, 212, 255, 0.4);
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.3s ease;
+    animation: quizPulse 2s infinite;
+}
+
+.quiz-btn:hover {
+    transform: scale(1.05);
+}
+
+.quiz-btn span {
+    font-size: 20px;
+}
+
+@keyframes quizPulse {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(0, 212, 255, 0.6), 0 0 40px rgba(0, 212, 255, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(0, 212, 255, 0.8), 0 0 60px rgba(0, 212, 255, 0.6);
+    }
+}
+
+/* Quiz Modal */
+.quiz-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 2001;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.quiz-modal.active {
+    display: flex;
+}
+
+.quiz-content {
+    background: linear-gradient(135deg, var(--card-bg) 0%, var(--dark-bg) 100%);
+    border-radius: 20px;
+    max-width: 600px;
+    width: 100%;
+    padding: 40px;
+    border: 2px solid rgba(0, 212, 255, 0.3);
+    box-shadow: 0 20px 60px rgba(0, 212, 255, 0.3);
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* Close Button */
+.quiz-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 0, 110, 0.1);
+    border: none;
+    color: var(--accent-color);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.quiz-close:hover {
+    background: rgba(255, 0, 110, 0.2);
+    transform: rotate(90deg);
+}
+
+/* Quiz Header */
+.quiz-header {
+    margin-bottom: 30px;
+}
+
+.quiz-header h2 {
+    color: var(--primary-color);
+    font-size: 28px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quiz-header span {
+    font-size: 28px;
+}
+
+.quiz-progress {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin: 0;
+}
+
+/* Progress Bar */
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(0, 212, 255, 0.1);
+    border-radius: 10px;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--gradient-2);
+    transition: width 0.3s ease;
+    border-radius: 10px;
+    width: 10%;
+}
+
+/* Question */
+.question-text {
+    color: var(--text-color);
+    font-size: 20px;
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+/* Options */
+.options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.option-btn {
+    padding: 15px 20px;
+    background: rgba(0, 212, 255, 0.05);
+    border: 2px solid rgba(0, 212, 255, 0.2);
+    border-radius: 10px;
+    color: var(--text-color);
+    font-size: 16px;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.3s ease;
+}
+
+.option-btn:hover {
+    background: rgba(0, 212, 255, 0.1);
+    border-color: rgba(0, 212, 255, 0.4);
+}
+
+.option-btn.selected {
+    background: rgba(0, 212, 255, 0.2);
+    border-color: var(--primary-color);
+}
+
+/* Next Button */
+.quiz-next-btn {
+    width: 100%;
+    padding: 15px;
+    background: var(--gradient-2);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.quiz-next-btn:disabled {
+    background: rgba(136, 146, 176, 0.3);
+    cursor: not-allowed;
+}
+
+.quiz-next-btn:not(:disabled):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(0, 212, 255, 0.4);
+}
+
+/* Results Section */
+#resultsSection {
+    text-align: center;
+}
+
+.result-emoji {
+    font-size: 80px;
+    margin-bottom: 20px;
+}
+
+.result-title {
+    color: var(--primary-color);
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.result-message {
+    color: var(--text-muted);
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.score-display {
+    background: rgba(0, 212, 255, 0.1);
+    border: 2px solid rgba(0, 212, 255, 0.3);
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.score-number {
+    font-size: 48px;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.score-percentage {
+    color: var(--text-muted);
+    font-size: 16px;
+}
+
+.result-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.quiz-restart-btn,
+.quiz-close-btn {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.quiz-restart-btn {
+    background: var(--gradient-2);
+    color: white;
+}
+
+.quiz-restart-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(0, 212, 255, 0.4);
+}
+
+.quiz-close-btn {
+    background: rgba(100, 255, 218, 0.1);
+    color: var(--success);
+    border: 2px solid rgba(100, 255, 218, 0.3);
+}
+
+.quiz-close-btn:hover {
+    background: rgba(100, 255, 218, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .quiz-btn {
+        top: 10px;
+        right: 10px;
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    .quiz-content {
+        padding: 30px 20px;
+    }
+
+    .quiz-header h2 {
+        font-size: 24px;
+    }
+
+    .question-text {
+        font-size: 18px;
+    }
+
+    .result-title {
+        font-size: 28px;
+    }
+
+    .result-buttons {
+        flex-direction: column;
+    }
+
+    .quiz-restart-btn,
+    .quiz-close-btn {
+        width: 100%;
+    }
+}
 
 /* ========================================================================
    RESPONSIVE DESIGN - PLANNED FOR PHASE 2 (MOBILE OPTIMIZATION)
