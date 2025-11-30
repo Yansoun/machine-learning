@@ -27,9 +27,56 @@
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+            <button id="quizButton" class="quiz-btn">
+            <span>🎯</span> Quiz
+            </button>
         </div>
     </nav>
+<div class="quiz-modal" id="quizModal">
+    <div class="quiz-content">
+        <!-- Close Button -->
+        <button class="quiz-close" id="closeQuiz">×</button>
+        
+        <!-- Quiz Container -->
+        <div id="quizContainer">
+            <!-- Header -->
+            <div class="quiz-header">
+                <h2><span>🎯</span> Quiz JavaScript</h2>
+                <p class="quiz-progress" id="quizProgress">Question 1 sur 10</p>
+            </div>
 
+            <!-- Progress Bar -->
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+            <div id="questionSection">
+                <h3 class="question-text" id="questionText"></h3>
+                <div class="options-container" id="optionsContainer"></div>
+                <button class="quiz-next-btn" id="nextBtn" disabled>Question Suivante</button>
+            </div>
+            <div id="resultsSection" style="display: none;">
+                <div class="result-emoji" id="resultEmoji">🏆</div>
+                <h2 class="result-title">Quiz Terminé !</h2>
+                <p class="result-message" id="resultMessage"></p>
+                
+                <div class="score-display">
+                    <div class="score-number" id="scoreNumber">0 / 10</div>
+                    <div class="score-percentage" id="scorePercentage">Score: 0%</div>
+                </div>
+
+                <div class="result-buttons">
+                    <button class="quiz-restart-btn" id="restartBtn">
+                        🔄 Recommencer
+                    </button>
+                    <button class="quiz-close-btn" id="closeResultBtn">
+                        ✓ Fermer
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-background">
@@ -265,7 +312,7 @@
                 <p class="footer-subtitle">Powered by AI & Coffee ☕</p>
             </div>
             <div class="social-links">
-                <a href="https://github.com/Yansoun" target="_blank" title="GitHub">
+                <a href="https://github.com/Yansoun/machine-learning/tree/portfolio" target="_blank" title="GitHub">
                     <i class="fab fa-github"></i>
                 </a>
                 <a href="https://www.linkedin.com/in/yessine-zouari-a84b9a349/" target="_blank" title="LinkedIn">
