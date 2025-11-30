@@ -459,3 +459,260 @@ if (typingText) {
     
     setTimeout(typeWriter, 500);
 }
+const quizQuestions = [
+    {
+        question: "Qu'est-ce que JavaScript ?",
+        options: [
+            "Un langage de programmation côté serveur",
+            "Un langage de script côté client",
+            "Un framework CSS",
+            "Un système de base de données"
+        ],
+        correct: 1
+    },
+    {
+        question: "Quelle balise HTML est utilisée pour inclure du JavaScript ?",
+        options: [
+            "<javascript>",
+            "<js>",
+            "<script>",
+            "<code>"
+        ],
+        correct: 2
+    },
+    {
+        question: "Comment déclare-t-on une variable en JavaScript ?",
+        options: [
+            "variable x;",
+            "var x;",
+            "dim x;",
+            "int x;"
+        ],
+        correct: 1
+    },
+    {
+        question: "Quelle méthode affiche un message dans une boîte de dialogue ?",
+        options: [
+            "alert()",
+            "prompt()",
+            "console.log()",
+            "document.write()"
+        ],
+        correct: 0
+    },
+    {
+        question: "Comment accède-t-on à un élément avec l'ID 'demo' ?",
+        options: [
+            "document.getElement('demo')",
+            "document.getElementById('demo')",
+            "document.id('demo')",
+            "getElementById('demo')"
+        ],
+        correct: 1
+    },
+    {
+        question: "Quel est le résultat de : typeof [1,2,3] ?",
+        options: [
+            "array",
+            "object",
+            "list",
+            "number"
+        ],
+        correct: 1
+    },
+    {
+        question: "Comment écrit-on un commentaire sur une ligne en JavaScript ?",
+        options: [
+            "<!-- commentaire -->",
+            "/* commentaire */",
+            "// commentaire",
+            "# commentaire"
+        ],
+        correct: 2
+    },
+    {
+        question: "Quelle méthode permet de convertir une chaîne en nombre entier ?",
+        options: [
+            "Number()",
+            "parseInt()",
+            "toInteger()",
+            "convert()"
+        ],
+        correct: 1
+    },
+    {
+        question: "Quel événement se déclenche quand on clique sur un bouton ?",
+        options: [
+            "onPress",
+            "onTouch",
+            "onClick",
+            "onSelect"
+        ],
+        correct: 2
+    },
+    {
+        question: "Comment déclare-t-on une fonction en JavaScript ?",
+        options: [
+            "func maFonction()",
+            "function: maFonction()",
+            "function maFonction()",
+            "def maFonction()"
+        ],
+        correct: 2
+    }
+];
+
+// Quiz State
+let currentQuestionIndex = 0;
+let score = 0;
+let selectedAnswer = null;
+
+// Get DOM Elements
+const quizButton = document.getElementById('quizButton');
+const quizModal = document.getElementById('quizModal');
+const closeQuiz = document.getElementById('closeQuiz');
+const questionSection = document.getElementById('questionSection');
+const resultsSection = document.getElementById('resultsSection');
+const questionText = document.getElementById('questionText');
+const optionsContainer = document.getElementById('optionsContainer');
+const nextBtn = document.getElementById('nextBtn');
+const progressFill = document.getElementById('progressFill');
+const quizProgress = document.getElementById('quizProgress');
+const resultEmoji = document.getElementById('resultEmoji');
+const resultMessage = document.getElementById('resultMessage');
+const scoreNumber = document.getElementById('scoreNumber');
+const scorePercentage = document.getElementById('scorePercentage');
+const restartBtn = document.getElementById('restartBtn');
+const closeResultBtn = document.getElementById('closeResultBtn');
+
+// Open Quiz Modal
+quizButton.addEventListener('click', () => {
+    quizModal.classList.add('active');
+    resetQuiz();
+    loadQuestion();
+});
+
+// Close Quiz Modal
+closeQuiz.addEventListener('click', () => {
+    quizModal.classList.remove('active');
+});
+
+// Close modal when clicking outside
+quizModal.addEventListener('click', (e) => {
+    if (e.target === quizModal) {
+        quizModal.classList.remove('active');
+    }
+});
+
+// Load Question
+function loadQuestion() {
+    const question = quizQuestions[currentQuestionIndex];
+    
+    // Update progress
+    quizProgress.textContent = `Question ${currentQuestionIndex + 1} sur ${quizQuestions.length}`;
+    progressFill.style.width = `${((currentQuestionIndex + 1) / quizQuestions.length) * 100}%`;
+    
+    // Display question
+    questionText.textContent = question.question;
+    
+    // Clear previous options
+    optionsContainer.innerHTML = '';
+    
+    // Create option buttons
+    question.options.forEach((option, index) => {
+        const optionBtn = document.createElement('button');
+        optionBtn.className = 'option-btn';
+        optionBtn.textContent = option;
+        optionBtn.addEventListener('click', () => selectAnswer(index));
+        optionsContainer.appendChild(optionBtn);
+    });
+    
+    // Reset next button
+    nextBtn.disabled = true;
+    selectedAnswer = null;
+}
+
+// Select Answer
+function selectAnswer(answerIndex) {
+    selectedAnswer = answerIndex;
+    
+    // Remove selected class from all options
+    const allOptions = document.querySelectorAll('.option-btn');
+    allOptions.forEach(btn => btn.classList.remove('selected'));
+    
+    // Add selected class to clicked option
+    allOptions[answerIndex].classList.add('selected');
+    
+    // Enable next button
+    nextBtn.disabled = false;
+}
+
+// Next Question
+nextBtn.addEventListener('click', () => {
+    // Check if answer is correct
+    if (selectedAnswer === quizQuestions[currentQuestionIndex].correct) {
+        score++;
+    }
+    
+    // Move to next question or show results
+    currentQuestionIndex++;
+    
+    if (currentQuestionIndex < quizQuestions.length) {
+        loadQuestion();
+    } else {
+        showResults();
+    }
+});
+
+// Show Results
+function showResults() {
+    questionSection.style.display = 'none';
+    resultsSection.style.display = 'block';
+    
+    // Calculate percentage
+    const percentage = (score / quizQuestions.length) * 100;
+    
+    // Display score
+    scoreNumber.textContent = `${score} / ${quizQuestions.length}`;
+    scorePercentage.textContent = `Score: ${Math.round(percentage)}%`;
+    
+    // Set emoji and message based on score
+    if (percentage === 100) {
+        resultEmoji.textContent = '🏆';
+        resultMessage.textContent = '🎉 Parfait ! Vous êtes un expert JavaScript !';
+    } else if (percentage >= 80) {
+        resultEmoji.textContent = '🌟';
+        resultMessage.textContent = '🌟 Excellent ! Très bonne maîtrise !';
+    } else if (percentage >= 60) {
+        resultEmoji.textContent = '👍';
+        resultMessage.textContent = '👍 Bien ! Vous avez de bonnes bases !';
+    } else if (percentage >= 40) {
+        resultEmoji.textContent = '📚';
+        resultMessage.textContent = '📚 Pas mal ! Continuez à apprendre !';
+    } else {
+        resultEmoji.textContent = '💪';
+        resultMessage.textContent = '💪 Courage ! Révisez et réessayez !';
+    }
+}
+
+// Restart Quiz
+restartBtn.addEventListener('click', () => {
+    resultsSection.style.display = 'none';
+    questionSection.style.display = 'block';
+    resetQuiz();
+    loadQuestion();
+});
+
+// Close Results
+closeResultBtn.addEventListener('click', () => {
+    quizModal.classList.remove('active');
+});
+
+// Reset Quiz
+function resetQuiz() {
+    currentQuestionIndex = 0;
+    score = 0;
+    selectedAnswer = null;
+    questionSection.style.display = 'block';
+    resultsSection.style.display = 'none';
+}
