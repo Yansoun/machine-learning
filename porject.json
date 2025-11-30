@@ -1,0 +1,66 @@
+[
+    {
+        "title": "Sales Prediction System",
+        "description": "End-to-end time-series forecasting pipeline predicting store sales using historical data, feature engineering, and advanced regression models. Deployed with interactive Streamlit interface.",
+        "tags": ["Time Series", "XGBoost", "Streamlit"],
+        "icon": "fa-chart-line",
+        "github": "https://github.com/Yansoun/machine-learning/tree/project1",
+        "readme": "sales-prediction"
+    },
+    {
+        "title": "Sentiment Analysis Engine",
+        "description": "NLP system classifying text reviews into positive or negative sentiment using TF-IDF vectorization and machine learning models with real-time prediction capabilities.",
+        "tags": ["NLP", "TF-IDF", "Scikit-learn"],
+        "icon": "fa-comment-dots",
+        "github": "https://github.com/Yansoun/machine-learning/tree/project2",
+        "readme": "sentiment-analysis"
+    },
+    {
+        "title": "Customer Churn Predictor",
+        "description": "Predictive analytics solution for telecom customer retention using SMOTE for imbalance handling and explainable ML pipeline focused on business ROI optimization.",
+        "tags": ["Classification", "SMOTE", "XGBoost"],
+        "icon": "fa-users",
+        "github": "https://github.com/Yansoun/machine-learning/tree/project-3",
+        "readme": "customer-churn"
+    },
+    {
+        "title": "Food Freshness Detector",
+        "description": "Computer vision classifier using CNNs and transfer learning with EfficientNet to identify fresh vs rotten food from custom image dataset with deployed prediction app.",
+        "tags": ["CNN", "Transfer Learning", "Computer Vision"],
+        "icon": "fa-camera",
+        "github": "https://github.com/Yansoun/machine-learning/tree/project4",
+        "readme": "food-freshness"
+    },
+    {
+        "title": "Food Calorie Estimation",
+        "description": "Deep learning app combining MobileNetV2 transfer learning with nutrition data to predict food categories and estimate calories with modern dark-theme UI and visualization.",
+        "tags": ["Deep Learning", "MobileNet", "Plotly"],
+        "icon": "fa-utensils",
+        "github": "https://github.com/Yansoun/machine-learning/tree/project5",
+        "readme": "calorie-estimation"
+    },
+    {
+        "title": "Credit Risk Analyzer",
+        "description": "Professional ML workflow predicting loan default risk with comprehensive EDA, feature engineering, and deployed credit approval application for financial decision-making.",
+        "tags": ["Finance", "Random Forest", "Risk Analysis"],
+        "icon": "fa-credit-card",
+        "github": "https://github.com/Yansoun/machine-learning/tree/project6",
+        "readme": "credit-risk"
+    },
+    {
+        "title": "Customer Segmentation",
+        "description": "Unsupervised learning solution using K-Means clustering and PCA to identify distinct market segments with interpretable behavioral patterns and business insights.",
+        "tags": ["K-Means", "PCA", "Clustering"],
+        "icon": "fa-project-diagram",
+        "github": "https://github.com/Yansoun/machine-learning/tree/project7",
+        "readme": "customer-segmentation"
+    },
+    {
+        "title": "A/B Test Analyzer",
+        "description": "Statistical analysis framework for evaluating experiment effectiveness using hypothesis testing, t-tests, and confidence intervals to drive data-driven business decisions.",
+        "tags": ["Statistics", "Hypothesis Testing", "Analysis"],
+        "icon": "fa-flask",
+        "github": "https://github.com/Yansoun/machine-learning/tree/A_B_Test_Effectiveness_Analysis",
+        "readme": "ab-test"
+    }
+]
