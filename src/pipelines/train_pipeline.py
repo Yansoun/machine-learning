@@ -63,8 +63,20 @@ def train_xgboost(X_train,X_test,y_train,y_test):
 
     return model, roc
 def run_training_pipeline():
-
+    
     X_train, X_test, y_train, y_test = load_processed_data()
+    import json
+
+    stats = {}
+
+    for col in X_train.columns:
+        stats[col] = {
+            "mean": float(X_train[col].mean()),
+            "std": float(X_train[col].std())
+        }
+
+    with open("models/train_stats.json", "w") as f:
+        json.dump(stats, f)
 
     models = {
         "logistic": train_logistic_regression,

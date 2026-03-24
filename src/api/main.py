@@ -2,12 +2,13 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import joblib
 import pandas as pd
-
+import json
 app = FastAPI()
 
 # Load model once at startup
 model = joblib.load("models/best_model.pkl")
-
+with open("models/train_stats.json") as f:
+    train_stats = json.load(f)
 
 @app.get("/")
 def home():
@@ -31,7 +32,24 @@ def predict(data: CustomerData):
         "MonthlyCharges": data.MonthlyCharges,
         "TotalCharges": data.TotalCharges
     }
+    drift_report = {}
 
+    for col in ["tenure", "MonthlyCharges", "TotalCharges"]:
+        train_mean = train_stats[col]["mean"]
+        train_std = train_stats[col]["std"]
+        new_value = input_dict[col]
+
+        diff = abs(new_value - train_mean)
+        if diff > 2 * train_std:
+            status = "DRIFT DETECTED 🚨"
+        else:
+            status = "OK"
+        drift_report[col] = {
+            "value": new_value,
+            "train_mean": train_mean,
+            "difference": diff,
+            "status": status
+        }    
     df = pd.DataFrame([input_dict])
 
     # Add missing columns (for encoded features)
@@ -48,5 +66,7 @@ def predict(data: CustomerData):
 
     return {
         "prediction": int(prediction),
-        "churn_probability": float(probability)
+        "churn_probability": float(probability),
+        "drift": drift_report,
+        "status": status
     }
