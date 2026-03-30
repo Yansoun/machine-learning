@@ -1,5 +1,5 @@
 pandas
-numpy==1.26.4
+numpy
 scikit-learn
 xgboost
 matplotlib
@@ -7,8 +7,7 @@ seaborn
 mlflow
 fastapi
 uvicorn
-streamlit==1.32.0
-altair==4.2.2
+streamlit
 plotly
 joblib
 python-dotenv
